@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C60C00391FB360FA001EE3BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C00381FB360FA001EE3BB /* AppDelegate.swift */; };
+		C60C003E1FB360FA001EE3BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60C003C1FB360FA001EE3BB /* Main.storyboard */; };
+		C60C00411FB360FA001EE3BB /* ScheduleHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C60C003F1FB360FA001EE3BB /* ScheduleHub.xcdatamodeld */; };
+		C60C00431FB360FA001EE3BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C60C00421FB360FA001EE3BB /* Assets.xcassets */; };
+		C60C00461FB360FA001EE3BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60C00441FB360FA001EE3BB /* LaunchScreen.storyboard */; };
+		C60C00511FB360FA001EE3BB /* ScheduleHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */; };
+		C60C005C1FB360FB001EE3BB /* ScheduleHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */; };
+		C6604F381FB430DF007434C8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6604F371FB430DF007434C8 /* DataService.swift */; };
+		C6A161731FB40A7400FFA21F /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616D1FB40A7400FFA21F /* Groups.swift */; };
+		C6A161751FB40A7400FFA21F /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616F1FB40A7400FFA21F /* Users.swift */; };
+		C6A161771FB40A7400FFA21F /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A161711FB40A7400FFA21F /* Availability.swift */; };
+		C6A161801FB40F6E00FFA21F /* GroupsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C60C004D1FB360FA001EE3BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C60C002D1FB360FA001EE3BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C60C00341FB360FA001EE3BB;
+			remoteInfo = ScheduleHub;
+		};
+		C60C00581FB360FB001EE3BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C60C002D1FB360FA001EE3BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C60C00341FB360FA001EE3BB;
+			remoteInfo = ScheduleHub;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C60C00351FB360FA001EE3BB /* ScheduleHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScheduleHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60C00381FB360FA001EE3BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C60C003D1FB360FA001EE3BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C60C00401FB360FA001EE3BB /* ScheduleHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScheduleHub.xcdatamodel; sourceTree = "<group>"; };
+		C60C00421FB360FA001EE3BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C60C00451FB360FA001EE3BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C60C00471FB360FA001EE3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C60C004C1FB360FA001EE3BB /* ScheduleHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHubTests.swift; sourceTree = "<group>"; };
+		C60C00521FB360FB001EE3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C60C00571FB360FB001EE3BB /* ScheduleHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHubUITests.swift; sourceTree = "<group>"; };
+		C60C005D1FB360FB001EE3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6604F371FB430DF007434C8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C6A1616D1FB40A7400FFA21F /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		C6A1616F1FB40A7400FFA21F /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		C6A161711FB40A7400FFA21F /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
+		C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsListViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C60C00321FB360FA001EE3BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60C00491FB360FA001EE3BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60C00541FB360FB001EE3BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C60C002C1FB360FA001EE3BB = {
+			isa = PBXGroup;
+			children = (
+				C60C00371FB360FA001EE3BB /* ScheduleHub */,
+				C60C004F1FB360FA001EE3BB /* ScheduleHubTests */,
+				C60C00361FB360FA001EE3BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C60C00361FB360FA001EE3BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C60C00351FB360FA001EE3BB /* ScheduleHub.app */,
+				C60C004C1FB360FA001EE3BB /* ScheduleHubTests.xctest */,
+				C60C00571FB360FB001EE3BB /* ScheduleHubUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C60C00371FB360FA001EE3BB /* ScheduleHub */ = {
+			isa = PBXGroup;
+			children = (
+				C6A1617C1FB40BF000FFA21F /* Source */,
+				C6A1617B1FB40BE200FFA21F /* Resources */,
+			);
+			path = ScheduleHub;
+			sourceTree = "<group>";
+		};
+		C60C004F1FB360FA001EE3BB /* ScheduleHubTests */ = {
+			isa = PBXGroup;
+			children = (
+				C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */,
+				C60C00521FB360FB001EE3BB /* Info.plist */,
+				C60C005A1FB360FB001EE3BB /* ScheduleHubUITests */,
+			);
+			path = ScheduleHubTests;
+			sourceTree = "<group>";
+		};
+		C60C005A1FB360FB001EE3BB /* ScheduleHubUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */,
+				C60C005D1FB360FB001EE3BB /* Info.plist */,
+			);
+			path = ScheduleHubUITests;
+			sourceTree = "<group>";
+		};
+		C6604F361FB42FC8007434C8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C6604F371FB430DF007434C8 /* DataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C6A1617A1FB40B5D00FFA21F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6A1616D1FB40A7400FFA21F /* Groups.swift */,
+				C6A1616F1FB40A7400FFA21F /* Users.swift */,
+				C6A161711FB40A7400FFA21F /* Availability.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C6A1617B1FB40BE200FFA21F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C60C003C1FB360FA001EE3BB /* Main.storyboard */,
+				C60C00421FB360FA001EE3BB /* Assets.xcassets */,
+				C60C00441FB360FA001EE3BB /* LaunchScreen.storyboard */,
+				C60C00471FB360FA001EE3BB /* Info.plist */,
+				C60C003F1FB360FA001EE3BB /* ScheduleHub.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C6A1617C1FB40BF000FFA21F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C6A1617A1FB40B5D00FFA21F /* Model */,
+				C6A1617E1FB40C7F00FFA21F /* View */,
+				C6A1617D1FB40C7200FFA21F /* Controller */,
+				C6604F361FB42FC8007434C8 /* Service */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		C6A1617D1FB40C7200FFA21F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C60C00381FB360FA001EE3BB /* AppDelegate.swift */,
+				C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C6A1617E1FB40C7F00FFA21F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C60C00341FB360FA001EE3BB /* ScheduleHub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60C00601FB360FB001EE3BB /* Build configuration list for PBXNativeTarget "ScheduleHub" */;
+			buildPhases = (
+				C60C00311FB360FA001EE3BB /* Sources */,
+				C60C00321FB360FA001EE3BB /* Frameworks */,
+				C60C00331FB360FA001EE3BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScheduleHub;
+			productName = ScheduleHub;
+			productReference = C60C00351FB360FA001EE3BB /* ScheduleHub.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C60C004B1FB360FA001EE3BB /* ScheduleHubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60C00631FB360FB001EE3BB /* Build configuration list for PBXNativeTarget "ScheduleHubTests" */;
+			buildPhases = (
+				C60C00481FB360FA001EE3BB /* Sources */,
+				C60C00491FB360FA001EE3BB /* Frameworks */,
+				C60C004A1FB360FA001EE3BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C60C004E1FB360FA001EE3BB /* PBXTargetDependency */,
+			);
+			name = ScheduleHubTests;
+			productName = ScheduleHubTests;
+			productReference = C60C004C1FB360FA001EE3BB /* ScheduleHubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C60C00561FB360FB001EE3BB /* ScheduleHubUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60C00661FB360FB001EE3BB /* Build configuration list for PBXNativeTarget "ScheduleHubUITests" */;
+			buildPhases = (
+				C60C00531FB360FB001EE3BB /* Sources */,
+				C60C00541FB360FB001EE3BB /* Frameworks */,
+				C60C00551FB360FB001EE3BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C60C00591FB360FB001EE3BB /* PBXTargetDependency */,
+			);
+			name = ScheduleHubUITests;
+			productName = ScheduleHubUITests;
+			productReference = C60C00571FB360FB001EE3BB /* ScheduleHubUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C60C002D1FB360FA001EE3BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Brendan Lindsey";
+				TargetAttributes = {
+					C60C00341FB360FA001EE3BB = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+					C60C004B1FB360FA001EE3BB = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C60C00341FB360FA001EE3BB;
+					};
+					C60C00561FB360FB001EE3BB = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C60C00341FB360FA001EE3BB;
+					};
+				};
+			};
+			buildConfigurationList = C60C00301FB360FA001EE3BB /* Build configuration list for PBXProject "ScheduleHub" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C60C002C1FB360FA001EE3BB;
+			productRefGroup = C60C00361FB360FA001EE3BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C60C00341FB360FA001EE3BB /* ScheduleHub */,
+				C60C004B1FB360FA001EE3BB /* ScheduleHubTests */,
+				C60C00561FB360FB001EE3BB /* ScheduleHubUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C60C00331FB360FA001EE3BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60C00461FB360FA001EE3BB /* LaunchScreen.storyboard in Resources */,
+				C60C00431FB360FA001EE3BB /* Assets.xcassets in Resources */,
+				C60C003E1FB360FA001EE3BB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60C004A1FB360FA001EE3BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60C00551FB360FB001EE3BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C60C00311FB360FA001EE3BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6A161801FB40F6E00FFA21F /* GroupsListViewController.swift in Sources */,
+				C6A161731FB40A7400FFA21F /* Groups.swift in Sources */,
+				C6A161751FB40A7400FFA21F /* Users.swift in Sources */,
+				C6A161771FB40A7400FFA21F /* Availability.swift in Sources */,
+				C60C00391FB360FA001EE3BB /* AppDelegate.swift in Sources */,
+				C60C00411FB360FA001EE3BB /* ScheduleHub.xcdatamodeld in Sources */,
+				C6604F381FB430DF007434C8 /* DataService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60C00481FB360FA001EE3BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60C00511FB360FA001EE3BB /* ScheduleHubTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60C00531FB360FB001EE3BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60C005C1FB360FB001EE3BB /* ScheduleHubUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C60C004E1FB360FA001EE3BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C60C00341FB360FA001EE3BB /* ScheduleHub */;
+			targetProxy = C60C004D1FB360FA001EE3BB /* PBXContainerItemProxy */;
+		};
+		C60C00591FB360FB001EE3BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C60C00341FB360FA001EE3BB /* ScheduleHub */;
+			targetProxy = C60C00581FB360FB001EE3BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C60C003C1FB360FA001EE3BB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C60C003D1FB360FA001EE3BB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C60C00441FB360FA001EE3BB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C60C00451FB360FA001EE3BB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C60C005E1FB360FB001EE3BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C60C005F1FB360FB001EE3BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C60C00611FB360FB001EE3BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y6FW7TXMBT;
+				INFOPLIST_FILE = ScheduleHub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C60C00621FB360FB001EE3BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y6FW7TXMBT;
+				INFOPLIST_FILE = ScheduleHub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C60C00641FB360FB001EE3BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y6FW7TXMBT;
+				INFOPLIST_FILE = ScheduleHubTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScheduleHub.app/ScheduleHub";
+			};
+			name = Debug;
+		};
+		C60C00651FB360FB001EE3BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y6FW7TXMBT;
+				INFOPLIST_FILE = ScheduleHubTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScheduleHub.app/ScheduleHub";
+			};
+			name = Release;
+		};
+		C60C00671FB360FB001EE3BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y6FW7TXMBT;
+				INFOPLIST_FILE = ScheduleHubUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHubUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ScheduleHub;
+			};
+			name = Debug;
+		};
+		C60C00681FB360FB001EE3BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y6FW7TXMBT;
+				INFOPLIST_FILE = ScheduleHubUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHubUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ScheduleHub;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C60C00301FB360FA001EE3BB /* Build configuration list for PBXProject "ScheduleHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60C005E1FB360FB001EE3BB /* Debug */,
+				C60C005F1FB360FB001EE3BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60C00601FB360FB001EE3BB /* Build configuration list for PBXNativeTarget "ScheduleHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60C00611FB360FB001EE3BB /* Debug */,
+				C60C00621FB360FB001EE3BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60C00631FB360FB001EE3BB /* Build configuration list for PBXNativeTarget "ScheduleHubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60C00641FB360FB001EE3BB /* Debug */,
+				C60C00651FB360FB001EE3BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60C00661FB360FB001EE3BB /* Build configuration list for PBXNativeTarget "ScheduleHubUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60C00671FB360FB001EE3BB /* Debug */,
+				C60C00681FB360FB001EE3BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C60C003F1FB360FA001EE3BB /* ScheduleHub.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C60C00401FB360FA001EE3BB /* ScheduleHub.xcdatamodel */,
+			);
+			currentVersion = C60C00401FB360FA001EE3BB /* ScheduleHub.xcdatamodel */;
+			path = ScheduleHub.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C60C002D1FB360FA001EE3BB /* Project object */;
+}

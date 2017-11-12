@@ -14,6 +14,7 @@
 		C60C00461FB360FA001EE3BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60C00441FB360FA001EE3BB /* LaunchScreen.storyboard */; };
 		C60C00511FB360FA001EE3BB /* ScheduleHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */; };
 		C60C005C1FB360FB001EE3BB /* ScheduleHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */; };
+		C6552D881FB5824E00D1F6E8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */; };
 		C6604F381FB430DF007434C8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6604F371FB430DF007434C8 /* DataService.swift */; };
 		C6A161731FB40A7400FFA21F /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616D1FB40A7400FFA21F /* Groups.swift */; };
 		C6A161751FB40A7400FFA21F /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616F1FB40A7400FFA21F /* Users.swift */; };
@@ -52,6 +53,7 @@
 		C60C00571FB360FB001EE3BB /* ScheduleHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHubUITests.swift; sourceTree = "<group>"; };
 		C60C005D1FB360FB001EE3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C6604F371FB430DF007434C8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C6A1616D1FB40A7400FFA21F /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		C6A1616F1FB40A7400FFA21F /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		C60C002C1FB360FA001EE3BB = {
 			isa = PBXGroup;
 			children = (
+				C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */,
 				C60C00371FB360FA001EE3BB /* ScheduleHub */,
 				C60C004F1FB360FA001EE3BB /* ScheduleHubTests */,
 				C60C00361FB360FA001EE3BB /* Products */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60C00461FB360FA001EE3BB /* LaunchScreen.storyboard in Resources */,
+				C6552D881FB5824E00D1F6E8 /* Default-568h@2x.png in Resources */,
 				C60C00431FB360FA001EE3BB /* Assets.xcassets in Resources */,
 				C60C003E1FB360FA001EE3BB /* Main.storyboard in Resources */,
 			);
@@ -496,7 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y6FW7TXMBT;
-				INFOPLIST_FILE = ScheduleHub/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ScheduleHub/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -511,7 +515,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y6FW7TXMBT;
-				INFOPLIST_FILE = ScheduleHub/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ScheduleHub/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";

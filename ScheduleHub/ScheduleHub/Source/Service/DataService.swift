@@ -61,4 +61,6 @@ class DataService {
     
     // MARK: Private properties
     private let container: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+
 }
+

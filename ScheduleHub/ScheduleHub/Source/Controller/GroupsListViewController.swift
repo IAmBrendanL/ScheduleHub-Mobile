@@ -13,22 +13,36 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: Manipulate Groups
     @IBAction func addGroup() {
         // show alert controller and add group in save action
-        let alert = UIAlertController(title: "Add New Group", message: "Add a new group", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Group", message: "The description is optional", preferredStyle: .alert)
         let alertSaveAction = UIAlertAction(title: "Save", style: .default) { action in
             guard let nameField = alert.textFields?[0], let nameForGroup = nameField.text else {
                 return
             }
+            guard let descriptionField = alert.textFields?[1], let descriptionForGroup = descriptionField.text else {
+                return
+            }
+            // only allow if name is there
+            if nameForGroup == "" {
+                self.addGroup()
+                return
+            }
             let group = Groups(context: self.managedObjectContext)
             group.name = nameForGroup
-            group.uuid = UUID.init()
-            group.startDate = Date.init()
+            group.groupDescription = descriptionForGroup
             self.saveManagedObjectContext()
             self.GroupListTable.reloadData()
         }
         let alertCancelAction = UIAlertAction(title: "Cancel", style: .default)
         
         // build alert from parts
-        alert.addTextField()
+        alert.addTextField { (nameField) in
+            nameField.placeholder = "Group Name"
+            nameField.clearButtonMode = .whileEditing
+        }
+        alert.addTextField { (descriptionField) in
+            descriptionField.placeholder = "Description"
+            descriptionField.clearButtonMode = .whileEditing
+        }
         alert.addAction(alertCancelAction)
         alert.addAction(alertSaveAction)
         alert.preferredAction = alertSaveAction
@@ -51,7 +65,7 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         let group = GroupsFetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = group.name
-        cell.detailTextLabel?.text = "\(group.startDate!)"
+        cell.detailTextLabel?.text = group.groupDescription
         return cell
     }
     

@@ -7,10 +7,8 @@
         <relationship name="userRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="availabilityRelation" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="Groups" representedClassName="Groups" syncable="YES" codeGenerationType="category">
-        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="groupDescription" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="availabilityRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Availability" inverseName="groupRelation" inverseEntity="Availability" syncable="YES"/>
         <relationship name="userRelations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Users" inverseName="groupRelation" inverseEntity="Users" syncable="YES"/>
     </entity>
@@ -22,7 +20,7 @@
     </entity>
     <elements>
         <element name="Availability" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="Groups" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Groups" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Users" positionX="-54" positionY="-9" width="128" height="105"/>
     </elements>
 </model>

@@ -14,7 +14,7 @@ class DataService {
     func groups() -> NSFetchedResultsController<Groups> {
         /* Returns a FetchedResults controller with all groups */
         let fetch: NSFetchRequest<Groups> = Groups.fetchRequest()
-        fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
     
@@ -22,7 +22,7 @@ class DataService {
         /* Returns users for a particular group */
         let fetch: NSFetchRequest<Users> = Users.fetchRequest()
         fetch.predicate = NSPredicate(format: "Groups == %@", group)
-        fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
     

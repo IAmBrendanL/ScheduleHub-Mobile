@@ -8,7 +8,15 @@
 
 import UIKit; import CoreData
 
-class GroupsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class GroupsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+    
+    // MARK: SearchBarDelegate
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        <#code#>
+//    }
     
     // MARK: Manipulate Groups
     @IBAction func addGroup() {
@@ -49,10 +57,8 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
         
         // present alert
         present(alert, animated: true)
-
     }
     
-
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,7 +77,6 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     
     
     // MARK: NSFetchedResultsControllerDelegate
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         GroupListTable.beginUpdates()
     }
@@ -110,6 +115,21 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    // MARK: View management
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToUserViewSegue" {
+            let usersListViewController = segue.destination as! UsersListViewController
+            
+            let selectedIndexPath = GroupListTable.indexPathForSelectedRow!
+            usersListViewController.belongingToGroup = GroupsFetchedResultsController.object(at: selectedIndexPath)
+            
+            GroupListTable.deselectRow(at: selectedIndexPath, animated: true)
+        }
+        else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
     
     // MARK: View life cycle
     override func viewDidLoad() {
@@ -139,5 +159,6 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
  * Change all calls to "fatalError"
  * add delete group w/ swipe and confirm and or...
  * add undo
- * Look at Charles' feedback regarding assignments 4-6 again 
+ * Look at Charles' feedback regarding assignments 4-6 again
+ * Refactor this, UserListViewController, and DataService so that DataService does the saving and I can remove all the managedObject context code from the two ViewControllers
  */

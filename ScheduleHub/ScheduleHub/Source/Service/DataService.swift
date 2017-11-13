@@ -21,7 +21,7 @@ class DataService {
     func users(for group: Groups) -> NSFetchedResultsController<Users> {
         /* Returns users for a particular group */
         let fetch: NSFetchRequest<Users> = Users.fetchRequest()
-        fetch.predicate = NSPredicate(format: "Groups == %@", group)
+        fetch.predicate = NSPredicate(format: "ANY groupRelation== %@", group)
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }

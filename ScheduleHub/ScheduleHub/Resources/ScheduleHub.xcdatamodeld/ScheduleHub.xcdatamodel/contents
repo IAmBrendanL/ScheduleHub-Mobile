@@ -14,13 +14,12 @@
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="category">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="availabilityRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Availability" inverseName="userRelation" inverseEntity="Availability" syncable="YES"/>
         <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Groups" inverseName="userRelations" inverseEntity="Groups" syncable="YES"/>
     </entity>
     <elements>
         <element name="Availability" positionX="-36" positionY="9" width="128" height="105"/>
         <element name="Groups" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Users" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="Users" positionX="-54" positionY="-9" width="128" height="90"/>
     </elements>
 </model>

@@ -87,17 +87,12 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // Reload table if data changes
-        print("HERE")
         usersTableView.endUpdates()
         
     }
     
     
     // MARK: ManagedObjectContext convience methods
-    func loadManagedObjectContext() {
-        managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    }
-    
     func saveManagedObjectContext() {
         do {
             try managedObjectContext.save()
@@ -110,9 +105,9 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: View management
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAvailability" {
-            // for later: let AvailabilitySceneViewController = segue.destination as! AvailabilitySceneViewController
+            let AvailabilityListViewController = segue.destination as! AvailabilityListViewController
             let selectedIndexPath = usersTableView.indexPathForSelectedRow!
-            // add stuff later
+            AvailabilityListViewController.belongingToUser = usersFetchedResultsController.object(at: selectedIndexPath)
             usersTableView.deselectRow(at: selectedIndexPath, animated: true)
         }
         else {
@@ -120,14 +115,12 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    
-    
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         usersFetchedResultsController = DataService.shared.users(for: belongingToGroup)
         usersFetchedResultsController.delegate = self
-        loadManagedObjectContext()
+        managedObjectContext = DataService.shared.getManagedObjectContext()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

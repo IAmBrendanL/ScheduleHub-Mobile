@@ -67,7 +67,7 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // set contents of cell at indexpath
+        /* set contents of cell at indexpath */
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         let group = GroupsFetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = group.name
@@ -103,10 +103,6 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     
     
     // MARK: ManagedObjectContext convience methods
-    func loadManagedObjectContext() {
-        managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    }
-    
     func saveManagedObjectContext() {
         do {
             try managedObjectContext.save()
@@ -138,7 +134,7 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
         GroupListTable.accessibilityIdentifier = "GroupListTable"
         GroupsFetchedResultsController = DataService.shared.groups()
         GroupsFetchedResultsController.delegate = self
-        loadManagedObjectContext()
+        managedObjectContext = DataService.shared.getManagedObjectContext()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -161,4 +157,5 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
  * add undo
  * Look at Charles' feedback regarding assignments 4-6 again
  * Refactor this, UserListViewController, and DataService so that DataService does the saving and I can remove all the managedObject context code from the two ViewControllers
+ * Read more about Grand Central Dispatch
  */

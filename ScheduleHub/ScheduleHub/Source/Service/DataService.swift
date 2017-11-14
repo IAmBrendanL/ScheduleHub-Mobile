@@ -29,7 +29,7 @@ class DataService {
     func availability(for user: Users) -> NSFetchedResultsController<Availability> {
         /* Returns availibility for a particular user */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
-        fetch.predicate = NSPredicate(format: "Users == %@", user)
+        fetch.predicate = NSPredicate(format: "ANY userRelation == %@", user)
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }
@@ -41,7 +41,13 @@ class DataService {
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }
-
+    
+    func getManagedObjectContext() -> NSManagedObjectContext {
+        /* Returns a ManagedObjectContext */
+        return container.viewContext
+    }
+    
+    
     // MARK: Private methods
     private func createResultsController<T>(for fetch: NSFetchRequest<T>) -> NSFetchedResultsController<T> {
         /* Generic function that returns a FetchedResultsController for the provided FetchRequest and performs the fetch */

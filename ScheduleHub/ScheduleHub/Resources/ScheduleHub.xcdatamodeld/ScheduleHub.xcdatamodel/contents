@@ -14,7 +14,7 @@
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="category">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="availabilityRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Availability" inverseName="userRelation" inverseEntity="Availability" syncable="YES"/>
+        <relationship name="availabilityRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Availability" inverseName="userRelation" inverseEntity="Availability" syncable="YES"/>
         <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Groups" inverseName="userRelations" inverseEntity="Groups" syncable="YES"/>
     </entity>
     <elements>

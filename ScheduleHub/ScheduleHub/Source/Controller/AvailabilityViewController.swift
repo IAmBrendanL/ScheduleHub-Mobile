@@ -17,7 +17,7 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         /* set contents of cell at indexpath */
-        let cell = AvailabilityTableList.dequeueReusableCell(withIdentifier: "AvaiabilityCell", for: indexPath)
+        let cell = AvailabilityTableList.dequeueReusableCell(withIdentifier: "AvailabilityCell", for: indexPath)
         let availability = AvailabilityFetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = "\(availability.startTime!)"
         cell.detailTextLabel?.text = "\(availability.endTime!)"
@@ -63,6 +63,22 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
             try managedObjectContext.save()
         } catch let error {
             fatalError("Failed to save managedObjectContext due to: \(error)")
+        }
+    }
+    
+    
+    // MARK: View management
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddAvailability" {
+            let addAvailabilityViewController = segue.destination as! AddAvailabilityViewController
+            
+//            let selectedIndexPath = AvailabilityTableList.indexPathForSelectedRow!
+            addAvailabilityViewController.belongingToUser = belongingToUser
+            
+//            AvailabilityTableList.deselectRow(at: selectedIndexPath, animated: true)
+        }
+        else {
+            super.prepare(for: segue, sender: sender)
         }
     }
     

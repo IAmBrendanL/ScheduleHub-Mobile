@@ -92,7 +92,7 @@
         <!--Add Availability-->
         <scene sceneID="O1y-Tr-xIP">
             <objects>
-                <viewController title="Add Availability" id="Udf-Ow-7Q1" sceneMemberID="viewController">
+                <viewController title="Add Availability" id="Udf-Ow-7Q1" customClass="AddAvailabilityViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="inx-EI-JIc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,7 +158,11 @@
                                         <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FRT-4X-eiV"/>
-                                    <barButtonItem title="Save" id="wMR-sy-oMu"/>
+                                    <barButtonItem title="Save" id="wMR-sy-oMu">
+                                        <connections>
+                                            <action selector="saveTime" destination="Udf-Ow-7Q1" id="KBJ-qb-hT3"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -177,6 +181,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hbv-P6-ZKy"/>
                     </view>
+                    <connections>
+                        <outlet property="endPicker" destination="aBA-K6-zB6" id="dCO-I8-19N"/>
+                        <outlet property="startPicker" destination="mOQ-ti-vzb" id="jbb-go-jeH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcc-PD-Mf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="-1575" y="81"/>
         </scene>
-        <!--User Availability-->
+        <!--Users-->
         <scene sceneID="aZx-tg-S8H">
             <objects>
-                <viewController title="User Availability" id="6Cl-wQ-UN4" customClass="UsersListViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Users" id="6Cl-wQ-UN4" customClass="UsersListViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kPw-Q5-RhC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -313,10 +321,13 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Udf-Ow-7Q1" kind="show" id="RJR-kt-01C"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="HHb-db-Wfd" id="cwQ-el-yei"/>
+                                    <outlet property="dataSource" destination="HHb-db-Wfd" id="Xag-jS-woR"/>
                                     <outlet property="delegate" destination="HHb-db-Wfd" id="Bls-0w-u3B"/>
                                 </connections>
                             </tableView>
@@ -337,12 +348,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iXX-mM-tEs">
                             <connections>
                                 <action selector="addUser" destination="HHb-db-Wfd" id="lFw-QY-c9N"/>
-                                <segue destination="Udf-Ow-7Q1" kind="show" id="3RM-zb-zLm"/>
+                                <segue destination="Udf-Ow-7Q1" kind="show" identifier="toAddAvailability" id="3RM-zb-zLm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="AvailabilityTableList" destination="Fxa-V2-1Sn" id="qdj-Hy-4pe"/>
+                        <outlet property="AvailabilityTableList" destination="Fxa-V2-1Sn" id="1Us-fV-i0Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKR-jm-dJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,4 +361,7 @@
             <point key="canvasLocation" x="-527" y="1127"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RJR-kt-01C"/>
+    </inferredMetricsTieBreakers>
 </document>

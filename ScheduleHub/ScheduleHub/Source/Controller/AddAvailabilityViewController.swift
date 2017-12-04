@@ -8,18 +8,24 @@
 
 import UIKit; import CoreData
 
-class AddAvailabilityViewController: UIViewController {
+class AddAvailabilityViewController: UITableViewController {
+   
     
-    // MARK: get data on save
+    // MARK: get data on save and segue back
     @IBAction func saveTime() {
+        // get time
         let startTime = startPicker.date
         let endTime = endPicker.date
+        
+        // set up availability object and save with person
         let availability = Availability(context: managedObjectContext)
         availability.startTime = startTime
         availability.endTime = endTime
         belongingToUser.addToAvailabilityRelation(availability)
         availability.userRelation = belongingToUser
-        // TODO stopped here, need to add an edit method and have this save automatically segue back to the list. Also need to pretty print the times
+        
+        // revert to previous view
+        self.navigationController?.popViewController(animated: true)
     }
     
     

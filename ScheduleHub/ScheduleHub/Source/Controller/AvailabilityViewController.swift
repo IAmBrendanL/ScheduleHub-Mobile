@@ -19,8 +19,8 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
         /* set contents of cell at indexpath */
         let cell = AvailabilityTableList.dequeueReusableCell(withIdentifier: "AvailabilityCell", for: indexPath)
         let availability = AvailabilityFetchedResultsController.object(at: indexPath)
-        cell.textLabel?.text = "\(availability.startTime!)"
-        cell.detailTextLabel?.text = "\(availability.endTime!)"
+        cell.textLabel?.text = dateForm.string(from: availability.startTime!)
+        cell.detailTextLabel?.text = dateForm.string(from: availability.endTime!)
         return cell
     }
     
@@ -69,7 +69,7 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     
     // MARK: View management
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toAddAvailability" {
+        if (segue.identifier == "toAddAvailability") || (segue.identifier == "toUpdaetAvailability") {
             let addAvailabilityViewController = segue.destination as! AddAvailabilityViewController
             
 //            let selectedIndexPath = AvailabilityTableList.indexPathForSelectedRow!
@@ -90,6 +90,8 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
         AvailabilityFetchedResultsController = DataService.shared.availability(for: belongingToUser)
         AvailabilityFetchedResultsController.delegate = self
         managedObjectContext = DataService.shared.getManagedObjectContext()
+        dateForm.dateStyle = .medium
+        dateForm.timeStyle = .short
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -104,5 +106,6 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet private weak var AvailabilityTableList: UITableView!
     private var AvailabilityFetchedResultsController: NSFetchedResultsController<Availability>!
     private var managedObjectContext: NSManagedObjectContext!
-
+    private let dateForm = DateFormatter()
+    
 }

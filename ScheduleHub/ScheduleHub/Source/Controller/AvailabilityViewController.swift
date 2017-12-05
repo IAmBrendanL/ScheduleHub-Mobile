@@ -24,6 +24,15 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        /* delete an availaible time based on a swipe action */
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") {(action,indexPath) in
+            self.managedObjectContext.delete(self.AvailabilityFetchedResultsController.object(at: indexPath))
+        }
+        return [delete]
+    }
+
+    
     
     // MARK: SearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -71,11 +80,7 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toAddAvailability") || (segue.identifier == "toUpdaetAvailability") {
             let addAvailabilityViewController = segue.destination as! AddAvailabilityViewController
-            
-//            let selectedIndexPath = AvailabilityTableList.indexPathForSelectedRow!
             addAvailabilityViewController.belongingToUser = belongingToUser
-            
-//            AvailabilityTableList.deselectRow(at: selectedIndexPath, animated: true)
         }
         else {
             super.prepare(for: segue, sender: sender)

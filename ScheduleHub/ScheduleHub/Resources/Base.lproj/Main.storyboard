@@ -325,9 +325,6 @@
                             <constraint firstItem="1n9-9o-Clq" firstAttribute="top" secondItem="Qov-Qq-jvL" secondAttribute="top" id="zcf-sc-Ism"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qov-Qq-jvL"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="UnO-Tp-xep" appends="YES" id="IEf-7l-xWc"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="User Availability" id="cgg-1U-BHD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iXX-mM-tEs">
@@ -342,7 +339,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKR-jm-dJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="UnO-Tp-xep"/>
             </objects>
             <point key="canvasLocation" x="1895" y="81"/>
         </scene>

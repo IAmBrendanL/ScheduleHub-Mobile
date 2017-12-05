@@ -28,6 +28,14 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        /* delete an availaible time based on a swipe action */
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") {(action,indexPath) in
+            self.managedObjectContext.delete(self.usersFetchedResultsController.object(at: indexPath))
+        }
+        return [delete]
+    }
+    
     
     // MARK: Manipulate Users
     @IBAction func addUser() {

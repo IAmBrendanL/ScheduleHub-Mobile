@@ -112,13 +112,15 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: View management
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toAvailability" {
-            let AvailabilityListViewController = segue.destination as! AvailabilityListViewController
+        if segue.identifier == "toUserAvailability" {
+            let UserAvailabilityListViewController = segue.destination as! AvailabilityListViewController
             let selectedIndexPath = usersTableView.indexPathForSelectedRow!
-            AvailabilityListViewController.belongingToUser = usersFetchedResultsController.object(at: selectedIndexPath)
+            UserAvailabilityListViewController.belongingToUser = usersFetchedResultsController.object(at: selectedIndexPath)
             usersTableView.deselectRow(at: selectedIndexPath, animated: true)
-        }
-        else {
+        } else if segue.identifier == "toGroupAvailability" {
+            let GroupAvailabilityListViewController = segue.destination as! GroupAvailabilityViewController
+            GroupAvailabilityListViewController.belongingToGroup = belongingToGroup
+        }else {
             super.prepare(for: segue, sender: sender)
         }
     }

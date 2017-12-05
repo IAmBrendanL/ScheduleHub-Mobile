@@ -1,0 +1,16 @@
+====================================================================
+Planned features
+====================================================================
+- Add edit via swipe on tableview
+    - to both user and group for name/description
+    - to availability to change extact times
+- Search Bar
+--------------------------------------------------------------------
+Housekeeping
+--------------------------------------------------------------------
+- Write automated tests
+- Refactor user view for groups into a paginated view
+--------------------------------------------------------------------
+TODO:
+- set GroupAvailabilityController to pull data from users
+    - first run evertime then cache 

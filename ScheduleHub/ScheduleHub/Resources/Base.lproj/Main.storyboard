@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -172,7 +173,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jt-7m-BtV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3154" y="81"/>
+            <point key="canvasLocation" x="3150" y="-307"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M0c-Cc-6j1">
@@ -226,7 +227,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="HHb-db-Wfd" kind="show" identifier="toAvailability" id="U8G-39-1qT"/>
+                                            <segue destination="HHb-db-Wfd" kind="show" identifier="toUserAvailability" id="U8G-39-1qT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -249,11 +250,18 @@
                         <viewLayoutGuide key="safeArea" id="lbd-YV-HNJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Users" id="hC8-qG-5S6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZpT-EJ-EdT">
-                            <connections>
-                                <action selector="addUser" destination="6Cl-wQ-UN4" id="LnK-Ny-PYG"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="ZpT-EJ-EdT">
+                                <connections>
+                                    <action selector="addUser" destination="6Cl-wQ-UN4" id="LnK-Ny-PYG"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Times" id="Sc4-nj-XAa">
+                                <connections>
+                                    <segue destination="U2y-57-tCF" kind="show" identifier="toGroupAvailability" id="Fjv-zi-M3w"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="usersTableView" destination="1ah-ZR-cIw" id="geW-Te-Erp"/>
@@ -261,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z58-mH-Oh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="81"/>
+            <point key="canvasLocation" x="876" y="81"/>
         </scene>
         <!--User Availability-->
         <scene sceneID="pzm-Mg-MGu">
@@ -340,7 +348,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKR-jm-dJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1895" y="81"/>
+            <point key="canvasLocation" x="1894" y="-307"/>
+        </scene>
+        <!--Group Availability-->
+        <scene sceneID="fl4-Nw-JFq">
+            <objects>
+                <tableViewController title="Group Availability" id="U2y-57-tCF" customClass="GroupAvailabilityViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nzu-8G-aLI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailabilityCell" id="HOf-Re-HBU">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HOf-Re-HBU" id="bBQ-aX-TMr">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U2y-57-tCF" id="gfr-LR-aw9"/>
+                            <outlet property="delegate" destination="U2y-57-tCF" id="NOx-qo-5qa"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="view" destination="Nzu-8G-aLI" id="j99-XZ-9M1"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VhH-5H-N19" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1894" y="589"/>
         </scene>
     </scenes>
 </document>

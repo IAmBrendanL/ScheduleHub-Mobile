@@ -37,7 +37,7 @@ class DataService {
     func availability(for group: Groups) -> NSFetchedResultsController<Availability> {
         /* Returns availibility for a particular user */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
-        fetch.predicate = NSPredicate(format: "Groups == %@", group)
+        fetch.predicate = NSPredicate(format: "ANY groupRelation== %@", group)
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }

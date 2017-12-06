@@ -150,12 +150,3 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     
 }
 
-/* TODO :
- * add data caching for the fetched results controller
- * Change all calls to "fatalError"
- * add delete group w/ swipe and confirm and or...
- * add undo
- * Look at Charles' feedback regarding assignments 4-6 again
- * Refactor this, UserListViewController, and DataService so that DataService does the saving and I can remove all the managedObject context code from the two ViewControllers
- * Read more about Grand Central Dispatch
- */

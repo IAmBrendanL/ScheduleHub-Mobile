@@ -69,33 +69,50 @@ class DataService {
         // check if nil and skip
         if groupsForUserResultsController.fetchedObjects == nil {
         } else {
-            
             for group in groupsForUserResultsController.fetchedObjects! {
-                // set flags and get intersected availability
-                var anyEqualFlag = false
-                var isNilFlag = false
-                let availabilityForGroupResultsController = self.intersectedAvailability(for: group, userAvailability)
-                // if nil set flag and go to if statement
-                if availabilityForGroupResultsController.fetchedObjects == nil {
-                    isNilFlag = true
-                } else {
-                    // for availability, add user to relation
-                    for availability in availabilityForGroupResultsController.fetchedObjects! {
-                        availability.addToUserRelation(user)
-                        // if availiability matches exactly, set flag
-                        if availability.startTime! == userAvailability.startTime! && availability.endTime! == userAvailability.endTime! {
-                            anyEqualFlag = true
-                        }
-                    }
-                }
-                // if one of flags in required position, create new availability
-                if !anyEqualFlag || isNilFlag {
+                // set equalAvailibility and get intersected availability
+                var equalAvailability: Availability?
+                let smallerAvailabilityForGroupResultsController = self.intersectedSmallerAvailability(for: group, userAvailability)
+                let largerAvailabiliityForGroupResultsController = self.intersectedLargerAvailability(for: group, userAvailability)
+                // if nil add a new availability
+                if (smallerAvailabilityForGroupResultsController.fetchedObjects == nil) && (largerAvailabiliityForGroupResultsController.fetchedObjects == nil) {
                     let moc = self.getManagedObjectContext()
                     let newAvailability = Availability(context: moc)
                     newAvailability.startTime = userAvailability.startTime
                     newAvailability.endTime = userAvailability.endTime
                     newAvailability.groupRelation = group
                     newAvailability.addToUserRelation(user)
+                } else {
+                    // for availability, add user to relation if smaller availability
+                    if smallerAvailabilityForGroupResultsController.fetchedObjects != nil {
+                        for availability in smallerAvailabilityForGroupResultsController.fetchedObjects! {
+                            availability.addToUserRelation(user)
+                            // if availiability matches exactly, set equalAvailability to it
+                            if availability.startTime! == userAvailability.startTime! && availability.endTime! == userAvailability.endTime! {
+                                equalAvailability = availability
+                            }
+                        }
+                    }
+                    // if no equal found create it and save it
+                    if equalAvailability == nil {
+                        let moc = self.getManagedObjectContext()
+                        let newAvailability = Availability(context: moc)
+                        newAvailability.startTime = userAvailability.startTime
+                        newAvailability.endTime = userAvailability.endTime
+                        newAvailability.groupRelation = group
+                        newAvailability.addToUserRelation(user)
+                        equalAvailability = newAvailability
+                    }
+                    // for larger availability, find users and add them to the one in the user relation
+                    if largerAvailabiliityForGroupResultsController.fetchedObjects != nil {
+                        for availability in largerAvailabiliityForGroupResultsController.fetchedObjects! {
+                            let availabilityUsersResultsControler = self.users(for: availability)
+                            for availabilityUser in availabilityUsersResultsControler.fetchedObjects! {
+                                equalAvailability?.addToUserRelation(availabilityUser)
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
@@ -115,7 +132,7 @@ class DataService {
         return resultsController
     }
     
-    private func intersectedAvailability(for group: Groups, _ availability: Availability) -> NSFetchedResultsController<Availability> {
+    private func intersectedSmallerAvailability(for group: Groups, _ availability: Availability) -> NSFetchedResultsController<Availability> {
         /* Returns availibilities that are within or equal to the availability given */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY groupRelation== %@ AND startTime >=%@ AND endTime <=%@ ", group, availability.startTime! as NSDate, availability.endTime! as NSDate)
@@ -123,6 +140,13 @@ class DataService {
         return createResultsController(for: fetch)
     }
     
+    private func intersectedLargerAvailability(for group: Groups, _ availability: Availability) -> NSFetchedResultsController<Availability> {
+        /* Returns availibilities that are within or equal to the availability given */
+        let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
+        fetch.predicate = NSPredicate(format: "ANY groupRelation== %@ AND startTime <%@ AND endTime >%@ ", group, availability.startTime! as NSDate, availability.endTime! as NSDate)
+        fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
+        return createResultsController(for: fetch)
+    }
     
     // MARK: Public static properties
     static let shared = DataService()

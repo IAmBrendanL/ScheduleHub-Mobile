@@ -4,22 +4,22 @@
         <attribute name="endTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="groupRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="availabilityRelation" inverseEntity="Groups" syncable="YES"/>
-        <relationship name="userRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="availabilityRelation" inverseEntity="Users" syncable="YES"/>
+        <relationship name="userRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Users" inverseName="availabilityRelation" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="Groups" representedClassName="Groups" syncable="YES" codeGenerationType="category">
         <attribute name="groupDescription" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="availabilityRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Availability" inverseName="groupRelation" inverseEntity="Availability" syncable="YES"/>
-        <relationship name="userRelations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Users" inverseName="groupRelation" inverseEntity="Users" syncable="YES"/>
+        <relationship name="userRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Users" inverseName="groupRelation" inverseEntity="Users" syncable="YES"/>
     </entity>
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="category">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="availabilityRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Availability" inverseName="userRelation" inverseEntity="Availability" syncable="YES"/>
-        <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Groups" inverseName="userRelations" inverseEntity="Groups" syncable="YES"/>
+        <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Groups" inverseName="userRelation" inverseEntity="Groups" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Availability" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="Groups" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Users" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="Availability" positionX="196" positionY="2" width="128" height="103"/>
+        <element name="Groups" positionX="-461" positionY="-279" width="128" height="105"/>
+        <element name="Users" positionX="-137" positionY="108" width="128" height="88"/>
     </elements>
 </model>

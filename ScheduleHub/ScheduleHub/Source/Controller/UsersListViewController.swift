@@ -53,7 +53,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
             let user = Users(context: self.managedObjectContext)
             // add name, group's relation to user, user's relation to group
             user.name = nameForGroup
-            self.belongingToGroup.addToUserRelations(user)
+            self.belongingToGroup.addToUserRelation(user)
             user.addToGroupRelation(self.belongingToGroup)
             self.saveManagedObjectContext()
             self.usersTableView.reloadData()
@@ -118,7 +118,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
             UserAvailabilityListViewController.belongingToUser = usersFetchedResultsController.object(at: selectedIndexPath)
             usersTableView.deselectRow(at: selectedIndexPath, animated: true)
         } else if segue.identifier == "toGroupAvailability" {
-            let GroupAvailabilityListViewController = segue.destination as! GroupAvailabilityViewController
+            let GroupAvailabilityListViewController = segue.destination as! GroupAvailabilityListViewController
             GroupAvailabilityListViewController.belongingToGroup = belongingToGroup
         }else {
             super.prepare(for: segue, sender: sender)

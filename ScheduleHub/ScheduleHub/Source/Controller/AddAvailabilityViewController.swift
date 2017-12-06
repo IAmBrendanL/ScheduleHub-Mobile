@@ -22,7 +22,8 @@ class AddAvailabilityViewController: UITableViewController {
         availability.startTime = startTime
         availability.endTime = endTime
         belongingToUser.addToAvailabilityRelation(availability)
-        availability.userRelation = belongingToUser
+        availability.addToUserRelation(belongingToUser)
+        DataService.shared.updateGroupAvailability(for: belongingToUser, availability)
         
         // revert to previous view
         self.navigationController?.popViewController(animated: true)

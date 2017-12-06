@@ -15,7 +15,7 @@
 		C60C00511FB360FA001EE3BB /* ScheduleHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */; };
 		C60C005C1FB360FB001EE3BB /* ScheduleHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */; };
 		C643BB821FD64F0700BDE227 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = C643BB811FD64F0700BDE227 /* todo.txt */; };
-		C643BB841FD6697900BDE227 /* GroupAvailabilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643BB831FD6697900BDE227 /* GroupAvailabilityController.swift */; };
+		C643BB841FD6697900BDE227 /* GroupAvailabilityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */; };
 		C6552D881FB5824E00D1F6E8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */; };
 		C6604F381FB430DF007434C8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6604F371FB430DF007434C8 /* DataService.swift */; };
 		C68D85C71FBA62B900FA68B8 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D85C61FBA62B900FA68B8 /* AvailabilityViewController.swift */; };
@@ -59,7 +59,7 @@
 		C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHubUITests.swift; sourceTree = "<group>"; };
 		C60C005D1FB360FB001EE3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C643BB811FD64F0700BDE227 /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
-		C643BB831FD6697900BDE227 /* GroupAvailabilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAvailabilityController.swift; sourceTree = "<group>"; };
+		C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAvailabilityListViewController.swift; sourceTree = "<group>"; };
 		C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C6604F371FB430DF007434C8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C68D85C61FBA62B900FA68B8 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 			children = (
 				C60C00381FB360FA001EE3BB /* AppDelegate.swift */,
 				C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */,
-				C643BB831FD6697900BDE227 /* GroupAvailabilityController.swift */,
+				C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */,
 				C69E03131FB9755B00F832C8 /* UsersListViewController.swift */,
 				C68D85C61FBA62B900FA68B8 /* AvailabilityViewController.swift */,
 				C68F88AA1FBAC1FB0088CD59 /* AddAvailabilityViewController.swift */,
@@ -342,7 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C643BB841FD6697900BDE227 /* GroupAvailabilityController.swift in Sources */,
+				C643BB841FD6697900BDE227 /* GroupAvailabilityListViewController.swift in Sources */,
 				C68D85C71FBA62B900FA68B8 /* AvailabilityViewController.swift in Sources */,
 				C6A161801FB40F6E00FFA21F /* GroupsListViewController.swift in Sources */,
 				C6A161731FB40A7400FFA21F /* Groups.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit; import CoreData
 
 
-class GroupAvailabilityViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+class GroupAvailabilityListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
     // MARK: UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -20,20 +20,14 @@ class GroupAvailabilityViewController: UITableViewController, NSFetchedResultsCo
         /* set contents of cell at indexpath */
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailabilityCell", for: indexPath)
         let availability = AvailabilityFetchedResultsController.object(at: indexPath)
-        cell.textLabel?.text = dateForm.string(from: availability.startTime!)
-        cell.detailTextLabel?.text = dateForm.string(from: availability.endTime!)
+        cell.textLabel?.text = dateForm.string(from: availability.startTime!) + " " + dateForm.string(from: availability.endTime!)
+        var detail = ""
+        for user in DataService.shared.users(for: availability).fetchedObjects! {
+            detail = detail + "\(user.name!) "
+        }
+        cell.detailTextLabel?.text = detail
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        /* delete an availaible time based on a swipe action */
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") {(action,indexPath) in
-            self.managedObjectContext.delete(self.AvailabilityFetchedResultsController.object(at: indexPath))
-        }
-        return [delete]
-    }
-    
-    
     
     // MARK: SearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

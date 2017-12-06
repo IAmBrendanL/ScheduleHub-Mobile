@@ -389,6 +389,7 @@
                             <outlet property="delegate" destination="U2y-57-tCF" id="NOx-qo-5qa"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="akP-se-LLi"/>
                     <connections>
                         <outlet property="view" destination="Nzu-8G-aLI" id="j99-XZ-9M1"/>
                     </connections>

@@ -12,13 +12,14 @@ Housekeeping
 - Refactor user view for groups into a paginated view
 --------------------------------------------------------------------
 TODO:
-  Tomorrow:
+  Tuesday:
     - set GroupAvailabilityController to pull data from users
         - first run evertime then cache
-   - set up calendar event from time
    - add deletion of users
   Wed:
+   - set up calendar event from time
     - set up remove user from group availability when date removed
+    - validate date from addavailability
     - set up data service to convert a user and availability to a
       .csv file or xml or json (look up best)
         - set up export

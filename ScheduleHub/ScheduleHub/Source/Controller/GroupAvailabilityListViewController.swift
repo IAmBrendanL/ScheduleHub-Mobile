@@ -6,10 +6,17 @@
 //  Copyright © 2017 Brendan Lindsey. All rights reserved.
 //
 
-import UIKit; import CoreData; import Foundation
+import UIKit; import CoreData; import Foundation; import EventKitUI
 
 
-class GroupAvailabilityListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+class GroupAvailabilityListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate, EKEventEditViewDelegate {
+ 
+    // MARK: EKEventEditViewDelegate
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        /* On completion, dismiss the view*/
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     // MARK: UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,6 +37,22 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
         let toIndex = detail.index(detail.endIndex, offsetBy: -2)
         cell.detailTextLabel?.text = String(detail[..<toIndex])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /* Requests access to calendar if necessary and displays controller */
+        if EKEventStore.authorizationStatus(for: EKEntityType.event) != EKAuthorizationStatus.authorized {
+            calEventStore.requestAccess(to: EKEntityType.event, completion: { (granted: Bool, error: Error?) in
+                if granted == true {
+                    self.presentEventController()
+                } else {
+                    // pop up an alert that says no access added, please add by going to x
+                }
+            })
+        } else {
+            self.presentEventController()
+        }
+ 
     }
     
     // MARK: SearchBarDelegate
@@ -74,15 +97,13 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
     }
     
     
-    // MARK: View management
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "toAddAvailability") || (segue.identifier == "toUpdaetAvailability") {
-//            let addAvailabilityViewController = segue.destination as! AddAvailabilityViewController
-//            addAvailabilityViewController.belongingToGroup = belongingToGroup
-//        }
-//         else {
-            super.prepare(for: segue, sender: sender)
-//        }
+    // MARK: Calendar Access
+    private func presentEventController() -> Void {
+        /* Setsup and presents the edit controller*/
+        let viewCont = EKEventEditViewController()
+        viewCont.eventStore = calEventStore
+        viewCont.editViewDelegate = self
+        present(viewCont, animated: true, completion: nil)
     }
     
     
@@ -93,6 +114,7 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
         AvailabilityFetchedResultsController = DataService.shared.availability(for: belongingToGroup, with: numUsers)
         AvailabilityFetchedResultsController.delegate = self
         managedObjectContext = DataService.shared.getManagedObjectContext()
+        calEventStore = DataService.shared.getEventStore()
         dateForm.dateStyle = .medium
         dateForm.timeStyle = .short
     }
@@ -110,6 +132,8 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
     private var AvailabilityFetchedResultsController: NSFetchedResultsController<Availability>!
     private var managedObjectContext: NSManagedObjectContext!
     private let dateForm = DateFormatter()
+    private var calEventStore: EKEventStore!
+    
     
 }
 

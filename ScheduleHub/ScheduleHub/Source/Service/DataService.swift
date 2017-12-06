@@ -6,7 +6,7 @@
 //  Copyright © 2017 Brendan Lindsey. All rights reserved.
 //
 
-import CoreData; import UIKit
+import CoreData; import UIKit; import EventKit
 
 class DataService {
     /* This service provides methods that perform most core data operations through a singlton */
@@ -151,6 +151,11 @@ class DataService {
         return container.viewContext
     }
     
+    func getEventStore() -> EKEventStore {
+        /* Returns an event store */
+        return eventStore
+    }
+    
     
     // MARK: Private methods
     private func createResultsController<T>(for fetch: NSFetchRequest<T>) -> NSFetchedResultsController<T> {
@@ -189,6 +194,8 @@ class DataService {
     
     // MARK: Private properties
     private let container: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    private let eventStore = EKEventStore()
+
 
 }
 

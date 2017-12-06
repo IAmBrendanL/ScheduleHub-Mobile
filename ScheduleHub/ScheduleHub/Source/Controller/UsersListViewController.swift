@@ -120,6 +120,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
         } else if segue.identifier == "toGroupAvailability" {
             let GroupAvailabilityListViewController = segue.destination as! GroupAvailabilityListViewController
             GroupAvailabilityListViewController.belongingToGroup = belongingToGroup
+            GroupAvailabilityListViewController.numUsers = usersFetchedResultsController.fetchedObjects?.count ?? 0
         }else {
             super.prepare(for: segue, sender: sender)
         }

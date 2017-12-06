@@ -25,8 +25,9 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        /* delete an availaible time based on a swipe action */
+        /* delete an availaible time based on a swipe action and update group availability */
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") {(action,indexPath) in
+            DataService.shared.removeFromGroupAvailability(for: self.belongingToUser, self.AvailabilityFetchedResultsController.object(at: indexPath))
             self.managedObjectContext.delete(self.AvailabilityFetchedResultsController.object(at: indexPath))
         }
         return [delete]

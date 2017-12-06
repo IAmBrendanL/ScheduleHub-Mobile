@@ -6,7 +6,7 @@
 //  Copyright © 2017 Brendan Lindsey. All rights reserved.
 //
 
-import UIKit; import CoreData
+import UIKit; import CoreData; import Foundation
 
 
 class GroupAvailabilityListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
@@ -20,12 +20,15 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
         /* set contents of cell at indexpath */
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailabilityCell", for: indexPath)
         let availability = AvailabilityFetchedResultsController.object(at: indexPath)
-        cell.textLabel?.text = dateForm.string(from: availability.startTime!) + " " + dateForm.string(from: availability.endTime!)
+        cell.textLabel?.text = dateForm.string(from: availability.startTime!) + "\n" + dateForm.string(from: availability.endTime!)
+        // set monospacing for numbers
+        cell.textLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: UIFont.Weight.regular)
         var detail = ""
         for user in DataService.shared.users(for: availability).fetchedObjects! {
-            detail = detail + "\(user.name!) "
+            detail = detail + "\(user.name!), "
         }
-        cell.detailTextLabel?.text = detail
+        let toIndex = detail.index(detail.endIndex, offsetBy: -2)
+        cell.detailTextLabel?.text = String(detail[..<toIndex])
         return cell
     }
     
@@ -87,7 +90,7 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
     override func viewDidLoad() {
         // set accessability identifier; cache resultscontroller; set delegate to watch for changes to data
         super.viewDidLoad()
-        AvailabilityFetchedResultsController = DataService.shared.availability(for: belongingToGroup)
+        AvailabilityFetchedResultsController = DataService.shared.availability(for: belongingToGroup, with: numUsers)
         AvailabilityFetchedResultsController.delegate = self
         managedObjectContext = DataService.shared.getManagedObjectContext()
         dateForm.dateStyle = .medium
@@ -102,6 +105,7 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
     
     // MARK: public properties
     var belongingToGroup: Groups!
+    var numUsers: Int!
     // MARK: private properties
     private var AvailabilityFetchedResultsController: NSFetchedResultsController<Availability>!
     private var managedObjectContext: NSManagedObjectContext!

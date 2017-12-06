@@ -18,7 +18,7 @@
         <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Groups" inverseName="userRelation" inverseEntity="Groups" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Availability" positionX="196" positionY="2" width="128" height="103"/>
+        <element name="Availability" positionX="196" positionY="2" width="128" height="105"/>
         <element name="Groups" positionX="-461" positionY="-279" width="128" height="105"/>
         <element name="Users" positionX="-137" positionY="108" width="128" height="88"/>
     </elements>

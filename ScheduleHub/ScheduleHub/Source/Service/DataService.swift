@@ -9,7 +9,8 @@
 import CoreData; import UIKit
 
 class DataService {
-    
+    /* This service provides methods that perform most core data operations through a singlton */
+ 
     // MARK: Services
     func groups() -> NSFetchedResultsController<Groups> {
         /* Returns a FetchedResults controller with all groups */
@@ -17,6 +18,7 @@ class DataService {
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
+    
     func groups(for user: Users) -> NSFetchedResultsController<Groups> {
         /* Returns a FetchedResults controller with all groups a particular user belongs to */
         let fetch: NSFetchRequest<Groups> = Groups.fetchRequest()
@@ -24,6 +26,7 @@ class DataService {
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
+  
     
     func users(for group: Groups) -> NSFetchedResultsController<Users> {
         /* Returns users for a particular group */
@@ -40,6 +43,7 @@ class DataService {
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
+  
     
     func availability(for user: Users) -> NSFetchedResultsController<Availability> {
         /* Returns availibility for a particular user */
@@ -56,24 +60,28 @@ class DataService {
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }
-
     
-    func getManagedObjectContext() -> NSManagedObjectContext {
-        /* Returns a ManagedObjectContext */
-        return container.viewContext
+    func availability(for group: Groups, with numUsers: Int) -> NSFetchedResultsController<Availability> {
+        /* Returns availibility for a particular group */
+        let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
+        fetch.predicate = NSPredicate(format: "ANY groupRelation== %@ AND userRelation.@count == %d", group, numUsers)
+        fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
+        return createResultsController(for: fetch)
     }
     
-    func updateGroupAvailability(for user: Users, _ userAvailability: Availability) -> Void {
+    
+    func addToGroupAvailability(for user: Users, _ userAvailability: Availability) -> Void {
         /* Updates the availiability for a group based on a specific user's availability */
         let groupsForUserResultsController = self.groups(for: user)
         // check if nil and skip
-        if groupsForUserResultsController.fetchedObjects == nil {
-        } else {
+        if groupsForUserResultsController.fetchedObjects != nil {
+           
             for group in groupsForUserResultsController.fetchedObjects! {
                 // set equalAvailibility and get intersected availability
                 var equalAvailability: Availability?
                 let smallerAvailabilityForGroupResultsController = self.intersectedSmallerAvailability(for: group, userAvailability)
                 let largerAvailabiliityForGroupResultsController = self.intersectedLargerAvailability(for: group, userAvailability)
+               
                 // if nil add a new availability
                 if (smallerAvailabilityForGroupResultsController.fetchedObjects == nil) && (largerAvailabiliityForGroupResultsController.fetchedObjects == nil) {
                     let moc = self.getManagedObjectContext()
@@ -83,6 +91,7 @@ class DataService {
                     newAvailability.groupRelation = group
                     newAvailability.addToUserRelation(user)
                 } else {
+                    
                     // for availability, add user to relation if smaller availability
                     if smallerAvailabilityForGroupResultsController.fetchedObjects != nil {
                         for availability in smallerAvailabilityForGroupResultsController.fetchedObjects! {
@@ -93,6 +102,7 @@ class DataService {
                             }
                         }
                     }
+                  
                     // if no equal found create it and save it
                     if equalAvailability == nil {
                         let moc = self.getManagedObjectContext()
@@ -103,6 +113,7 @@ class DataService {
                         newAvailability.addToUserRelation(user)
                         equalAvailability = newAvailability
                     }
+                    
                     // for larger availability, find users and add them to the one in the user relation
                     if largerAvailabiliityForGroupResultsController.fetchedObjects != nil {
                         for availability in largerAvailabiliityForGroupResultsController.fetchedObjects! {
@@ -112,11 +123,34 @@ class DataService {
                             }
                         }
                     }
-                    
                 }
             }
         }
     }
+   
+    func removeFromGroupAvailability(for user: Users, _ userAvailability: Availability) -> Void {
+        /* Removes user from intersected group availabilities */
+        let groupsWithUserResultsController = self.groups(for: user)
+       
+        // check if nil and skip
+        if groupsWithUserResultsController.fetchedObjects != nil {
+            for group in groupsWithUserResultsController.fetchedObjects! {
+                let smallerAvailabilityForGroupResultsController = self.intersectedSmallerAvailability(for: group, userAvailability)
+                if smallerAvailabilityForGroupResultsController.fetchedObjects != nil {
+                    for availability in smallerAvailabilityForGroupResultsController.fetchedObjects! {
+                        availability.removeFromUserRelation(user)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func getManagedObjectContext() -> NSManagedObjectContext {
+        /* Returns a ManagedObjectContext */
+        return container.viewContext
+    }
+    
     
     // MARK: Private methods
     private func createResultsController<T>(for fetch: NSFetchRequest<T>) -> NSFetchedResultsController<T> {
@@ -147,6 +181,8 @@ class DataService {
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }
+    
+    
     
     // MARK: Public static properties
     static let shared = DataService()

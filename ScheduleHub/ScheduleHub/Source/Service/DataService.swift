@@ -6,46 +6,46 @@
 //  Copyright © 2017 Brendan Lindsey. All rights reserved.
 //
 
-import CoreData; import UIKit; import EventKit
+import CoreData; import UIKit; import EventKit; import Foundation
 
 class DataService {
     /* This service provides methods that perform most core data operations through a singlton */
  
     // MARK: Services
-    func groups() -> NSFetchedResultsController<Groups> {
+    func groups() -> NSFetchedResultsController<Group> {
         /* Returns a FetchedResults controller with all groups */
-        let fetch: NSFetchRequest<Groups> = Groups.fetchRequest()
+        let fetch: NSFetchRequest<Group> = Group.fetchRequest()
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
     
-    func groups(for user: Users) -> NSFetchedResultsController<Groups> {
+    func groups(for user: User) -> NSFetchedResultsController<Group> {
         /* Returns a FetchedResults controller with all groups a particular user belongs to */
-        let fetch: NSFetchRequest<Groups> = Groups.fetchRequest()
+        let fetch: NSFetchRequest<Group> = Group.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY userRelation== %@", user )
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
   
     
-    func users(for group: Groups) -> NSFetchedResultsController<Users> {
+    func users(for group: Group) -> NSFetchedResultsController<User> {
         /* Returns users for a particular group */
-        let fetch: NSFetchRequest<Users> = Users.fetchRequest()
+        let fetch: NSFetchRequest<User> = User.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY groupRelation== %@", group)
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
     
-    func users(for availability: Availability) -> NSFetchedResultsController<Users> {
+    func users(for availability: Availability) -> NSFetchedResultsController<User> {
         /* Returns users for a particular group */
-        let fetch: NSFetchRequest<Users> = Users.fetchRequest()
+        let fetch: NSFetchRequest<User> = User.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY availabilityRelation== %@", availability)
         fetch.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
         return createResultsController(for: fetch)
     }
   
     
-    func availability(for user: Users) -> NSFetchedResultsController<Availability> {
+    func availability(for user: User) -> NSFetchedResultsController<Availability> {
         /* Returns availibility for a particular user */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY userRelation == %@ AND groupRelation == nil", user)
@@ -53,7 +53,7 @@ class DataService {
         return createResultsController(for: fetch)
     }
     
-    func availability(for group: Groups) -> NSFetchedResultsController<Availability> {
+    func availability(for group: Group) -> NSFetchedResultsController<Availability> {
         /* Returns availibility for a particular group */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY groupRelation== %@", group)
@@ -61,7 +61,7 @@ class DataService {
         return createResultsController(for: fetch)
     }
     
-    func availability(for group: Groups, with numUsers: Int) -> NSFetchedResultsController<Availability> {
+    func availability(for group: Group, with numUsers: Int) -> NSFetchedResultsController<Availability> {
         /* Returns availibility for a particular group */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
         fetch.predicate = NSPredicate(format: "ANY groupRelation== %@ AND userRelation.@count == %d", group, numUsers)
@@ -70,7 +70,7 @@ class DataService {
     }
     
     
-    func addToGroupAvailability(for user: Users, _ userAvailability: Availability) -> Void {
+    func addToGroupAvailability(for user: User, _ userAvailability: Availability) -> Void {
         /* Updates the availiability for a group based on a specific user's availability */
         let groupsForUserResultsController = self.groups(for: user)
         // check if nil and skip
@@ -128,7 +128,7 @@ class DataService {
         }
     }
    
-    func removeFromGroupAvailability(for user: Users, _ userAvailability: Availability) -> Void {
+    func removeFromGroupAvailability(for user: User, _ userAvailability: Availability) -> Void {
         /* Removes user from intersected group availabilities */
         let groupsWithUserResultsController = self.groups(for: user)
        
@@ -142,6 +142,34 @@ class DataService {
                     }
                 }
             }
+        }
+    }
+    
+    
+    func createJSON(for user: User) -> Bool {
+        /* Creates a JSON object for a user and saves it to the documents directory */
+        var jsonObject: [String: Any]?
+        var jsonArray: [[String: String]] = [["Name": user.name!]]
+        let userAvailabilityResultsController = self.availability(for: user)
+        if userAvailabilityResultsController.fetchedObjects != nil {
+            for availability in userAvailabilityResultsController.fetchedObjects! {
+                jsonArray.append(["Availability": String(describing: availability.startTime!) + "|" + String(describing: availability.endTime!)])
+                print(String(describing: availability.startTime!) + "|" + String(describing: availability.endTime!))
+            }
+        }
+        // Take built object and save as
+        jsonObject = ["User": jsonArray]
+        var result: Data? = nil
+        do {
+            try result = JSONSerialization.data(withJSONObject: jsonObject as Any, options: .prettyPrinted) as Data?
+            let fManager = FileManager.default
+            let dir = try fManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create: false)
+            let fURL = dir.appendingPathComponent(user.name!+".json")
+            try result?.write(to: fURL)
+            return true
+            
+        } catch  {
+         return false
         }
     }
     
@@ -171,18 +199,18 @@ class DataService {
         return resultsController
     }
     
-    private func intersectedSmallerAvailability(for group: Groups, _ availability: Availability) -> NSFetchedResultsController<Availability> {
+    private func intersectedSmallerAvailability(for group: Group, _ availability: Availability) -> NSFetchedResultsController<Availability> {
         /* Returns availibilities that are within or equal to the availability given */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
-        fetch.predicate = NSPredicate(format: "ANY groupRelation== %@ AND startTime >=%@ AND endTime <=%@ ", group, availability.startTime! as NSDate, availability.endTime! as NSDate)
+        fetch.predicate = NSPredicate(format: "groupRelation== %@ AND startTime >=%@ AND endTime <=%@ ", group, availability.startTime! as NSDate, availability.endTime! as NSDate)
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }
     
-    private func intersectedLargerAvailability(for group: Groups, _ availability: Availability) -> NSFetchedResultsController<Availability> {
+    private func intersectedLargerAvailability(for group: Group, _ availability: Availability) -> NSFetchedResultsController<Availability> {
         /* Returns availibilities that are within or equal to the availability given */
         let fetch: NSFetchRequest<Availability> = Availability.fetchRequest()
-        fetch.predicate = NSPredicate(format: "ANY groupRelation== %@ AND startTime <%@ AND endTime >%@ ", group, availability.startTime! as NSDate, availability.endTime! as NSDate)
+        fetch.predicate = NSPredicate(format: "groupRelation== %@ AND startTime <=%@ AND endTime >=%@ ", group, availability.startTime! as NSDate, availability.endTime! as NSDate)
         fetch.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true)]
         return createResultsController(for: fetch)
     }
@@ -195,7 +223,5 @@ class DataService {
     // MARK: Private properties
     private let container: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     private let eventStore = EKEventStore()
-
-
 }
 

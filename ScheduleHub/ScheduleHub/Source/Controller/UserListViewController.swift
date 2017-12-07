@@ -8,13 +8,19 @@
 
 import UIKit; import CoreData
 
-class UsersListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+class UserListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, UIDocumentPickerDelegate {
     
     // MARK: SearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
     
+    
+    // MARK: UIDocumentPickerDelegate
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        /* On completion, dismiss the view and save*/
+        dismiss(animated: true, completion: nil)
+    }
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,7 +56,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
                 self.addUser()
                 return
             }
-            let user = Users(context: self.managedObjectContext)
+            let user = User(context: self.managedObjectContext)
             // add name, group's relation to user, user's relation to group
             user.name = nameForGroup
             self.belongingToGroup.addToUserRelation(user)
@@ -71,6 +77,15 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
         
         // present alert
         present(alert, animated: true)
+    }
+    
+    @IBAction func importUser() {
+        /* Import a user from the file system */
+        // use the files app
+        let docPicker = UIDocumentPickerViewController(documentTypes: ["public.json"], in: .import)
+        docPicker.delegate = self
+        present(docPicker, animated: true)
+        print("here")
     }
     
     
@@ -113,7 +128,7 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: View management
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserAvailability" {
-            let UserAvailabilityListViewController = segue.destination as! AvailabilityListViewController
+            let UserAvailabilityListViewController = segue.destination as! UserAvailabilityListViewController
             let selectedIndexPath = usersTableView.indexPathForSelectedRow!
             UserAvailabilityListViewController.belongingToUser = usersFetchedResultsController.object(at: selectedIndexPath)
             usersTableView.deselectRow(at: selectedIndexPath, animated: true)
@@ -141,9 +156,9 @@ class UsersListViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     // MARK: public properties
-    var belongingToGroup: Groups!
+    var belongingToGroup: Group!
     // MARK: private properties
-    private var usersFetchedResultsController: NSFetchedResultsController<Users>!
+    private var usersFetchedResultsController: NSFetchedResultsController<User>!
     @IBOutlet private weak var usersTableView: UITableView!
     private var managedObjectContext: NSManagedObjectContext!
     

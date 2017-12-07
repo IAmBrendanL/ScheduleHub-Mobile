@@ -18,11 +18,11 @@
 		C643BB841FD6697900BDE227 /* GroupAvailabilityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */; };
 		C6552D881FB5824E00D1F6E8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */; };
 		C6604F381FB430DF007434C8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6604F371FB430DF007434C8 /* DataService.swift */; };
-		C68D85C71FBA62B900FA68B8 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D85C61FBA62B900FA68B8 /* AvailabilityViewController.swift */; };
+		C68D85C71FBA62B900FA68B8 /* UserAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D85C61FBA62B900FA68B8 /* UserAvailabilityViewController.swift */; };
 		C68F88AB1FBAC1FB0088CD59 /* AddAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F88AA1FBAC1FB0088CD59 /* AddAvailabilityViewController.swift */; };
-		C69E03141FB9755B00F832C8 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E03131FB9755B00F832C8 /* UsersListViewController.swift */; };
-		C6A161731FB40A7400FFA21F /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616D1FB40A7400FFA21F /* Groups.swift */; };
-		C6A161751FB40A7400FFA21F /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616F1FB40A7400FFA21F /* Users.swift */; };
+		C69E03141FB9755B00F832C8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E03131FB9755B00F832C8 /* UserListViewController.swift */; };
+		C6A161731FB40A7400FFA21F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616D1FB40A7400FFA21F /* Group.swift */; };
+		C6A161751FB40A7400FFA21F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1616F1FB40A7400FFA21F /* User.swift */; };
 		C6A161771FB40A7400FFA21F /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A161711FB40A7400FFA21F /* Availability.swift */; };
 		C6A161801FB40F6E00FFA21F /* GroupsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -62,11 +62,11 @@
 		C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAvailabilityListViewController.swift; sourceTree = "<group>"; };
 		C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C6604F371FB430DF007434C8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		C68D85C61FBA62B900FA68B8 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
+		C68D85C61FBA62B900FA68B8 /* UserAvailabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvailabilityViewController.swift; sourceTree = "<group>"; };
 		C68F88AA1FBAC1FB0088CD59 /* AddAvailabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityViewController.swift; sourceTree = "<group>"; };
-		C69E03131FB9755B00F832C8 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
-		C6A1616D1FB40A7400FFA21F /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
-		C6A1616F1FB40A7400FFA21F /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		C69E03131FB9755B00F832C8 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		C6A1616D1FB40A7400FFA21F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		C6A1616F1FB40A7400FFA21F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C6A161711FB40A7400FFA21F /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,8 +156,8 @@
 		C6A1617A1FB40B5D00FFA21F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C6A1616D1FB40A7400FFA21F /* Groups.swift */,
-				C6A1616F1FB40A7400FFA21F /* Users.swift */,
+				C6A1616D1FB40A7400FFA21F /* Group.swift */,
+				C6A1616F1FB40A7400FFA21F /* User.swift */,
 				C6A161711FB40A7400FFA21F /* Availability.swift */,
 			);
 			path = Model;
@@ -192,8 +192,8 @@
 				C60C00381FB360FA001EE3BB /* AppDelegate.swift */,
 				C6A1617F1FB40F6E00FFA21F /* GroupsListViewController.swift */,
 				C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */,
-				C69E03131FB9755B00F832C8 /* UsersListViewController.swift */,
-				C68D85C61FBA62B900FA68B8 /* AvailabilityViewController.swift */,
+				C69E03131FB9755B00F832C8 /* UserListViewController.swift */,
+				C68D85C61FBA62B900FA68B8 /* UserAvailabilityViewController.swift */,
 				C68F88AA1FBAC1FB0088CD59 /* AddAvailabilityViewController.swift */,
 			);
 			path = Controller;
@@ -343,14 +343,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C643BB841FD6697900BDE227 /* GroupAvailabilityListViewController.swift in Sources */,
-				C68D85C71FBA62B900FA68B8 /* AvailabilityViewController.swift in Sources */,
+				C68D85C71FBA62B900FA68B8 /* UserAvailabilityViewController.swift in Sources */,
 				C6A161801FB40F6E00FFA21F /* GroupsListViewController.swift in Sources */,
-				C6A161731FB40A7400FFA21F /* Groups.swift in Sources */,
-				C6A161751FB40A7400FFA21F /* Users.swift in Sources */,
+				C6A161731FB40A7400FFA21F /* Group.swift in Sources */,
+				C6A161751FB40A7400FFA21F /* User.swift in Sources */,
 				C6A161771FB40A7400FFA21F /* Availability.swift in Sources */,
 				C68F88AB1FBAC1FB0088CD59 /* AddAvailabilityViewController.swift in Sources */,
 				C60C00391FB360FA001EE3BB /* AppDelegate.swift in Sources */,
-				C69E03141FB9755B00F832C8 /* UsersListViewController.swift in Sources */,
+				C69E03141FB9755B00F832C8 /* UserListViewController.swift in Sources */,
 				C60C00411FB360FA001EE3BB /* ScheduleHub.xcdatamodeld in Sources */,
 				C6604F381FB430DF007434C8 /* DataService.swift in Sources */,
 			);
@@ -521,6 +521,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y6FW7TXMBT;
 				INFOPLIST_FILE = "$(SRCROOT)/ScheduleHub/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -536,6 +537,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y6FW7TXMBT;
 				INFOPLIST_FILE = "$(SRCROOT)/ScheduleHub/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";

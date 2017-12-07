@@ -44,13 +44,13 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
         if EKEventStore.authorizationStatus(for: EKEntityType.event) != EKAuthorizationStatus.authorized {
             calEventStore.requestAccess(to: EKEntityType.event, completion: { (granted: Bool, error: Error?) in
                 if granted == true {
-                    self.presentEventController()
+                    self.presentEventController(indexPath)
                 } else {
                     // pop up an alert that says no access added, please add by going to x
                 }
             })
         } else {
-            self.presentEventController()
+            self.presentEventController(indexPath)
         }
  
     }
@@ -98,11 +98,14 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
     
     
     // MARK: Calendar Access
-    private func presentEventController() -> Void {
+    private func presentEventController(_ indexPath: IndexPath) -> Void {
         /* Setsup and presents the edit controller*/
         let viewCont = EKEventEditViewController()
         viewCont.eventStore = calEventStore
         viewCont.editViewDelegate = self
+        viewCont.event?.title = "Time for \(belongingToGroup.name!)"
+        viewCont.event?.startDate = AvailabilityFetchedResultsController.object(at: indexPath).startTime!
+        viewCont.event?.endDate = AvailabilityFetchedResultsController.object(at: indexPath).endTime!
         present(viewCont, animated: true, completion: nil)
     }
     
@@ -126,7 +129,7 @@ class GroupAvailabilityListViewController: UITableViewController, NSFetchedResul
     
     
     // MARK: public properties
-    var belongingToGroup: Groups!
+    var belongingToGroup: Group!
     var numUsers: Int!
     // MARK: private properties
     private var AvailabilityFetchedResultsController: NSFetchedResultsController<Availability>!

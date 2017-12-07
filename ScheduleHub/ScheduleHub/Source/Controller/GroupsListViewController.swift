@@ -34,7 +34,7 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
                 self.addGroup()
                 return
             }
-            let group = Groups(context: self.managedObjectContext)
+            let group = Group(context: self.managedObjectContext)
             group.name = nameForGroup
             group.groupDescription = descriptionForGroup
             self.saveManagedObjectContext()
@@ -114,7 +114,7 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: View management
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToUserViewSegue" {
-            let usersListViewController = segue.destination as! UsersListViewController
+            let usersListViewController = segue.destination as! UserListViewController
             
             let selectedIndexPath = GroupListTable.indexPathForSelectedRow!
             usersListViewController.belongingToGroup = GroupsFetchedResultsController.object(at: selectedIndexPath)
@@ -145,7 +145,7 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
     
     // MARK: Properties
     @IBOutlet private weak var GroupListTable: UITableView!
-    private var GroupsFetchedResultsController: NSFetchedResultsController<Groups>!
+    private var GroupsFetchedResultsController: NSFetchedResultsController<Group>!
     private var managedObjectContext: NSManagedObjectContext!
     
 }

@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Groups)
-public class Groups: NSManagedObject {
+@objc(Group)
+public class Group: NSManagedObject {
 
 }

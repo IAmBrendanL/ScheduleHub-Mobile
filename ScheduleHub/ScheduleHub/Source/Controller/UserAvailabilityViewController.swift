@@ -8,7 +8,7 @@
 
 import UIKit; import CoreData
 
-class AvailabilityListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+class UserAvailabilityListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -16,11 +16,13 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /* set contents of cell at indexpath */
+        /* set contents of cell at indexpath and set font to monospaced digits */
         let cell = AvailabilityTableList.dequeueReusableCell(withIdentifier: "AvailabilityCell", for: indexPath)
         let availability = AvailabilityFetchedResultsController.object(at: indexPath)
         cell.textLabel?.text = dateForm.string(from: availability.startTime!)
+        cell.textLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: UIFont.Weight.regular)
         cell.detailTextLabel?.text = dateForm.string(from: availability.endTime!)
+        cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: UIFont.Weight.regular)
         return cell
     }
     
@@ -32,8 +34,32 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
         }
         return [delete]
     }
-
     
+    // MARK: Export User
+    @IBAction func exportUser() {
+        /* convert data and present user with ability to share file */
+        if DataService.shared.createJSON(for: belongingToUser) {
+            /* Present an alert letting the user know they selected an invalid interval */
+            // set up alert
+            let alert = UIAlertController(title:"Successfully Exported user", message: "The exported file can be viewed in the files app under \"On My iPhone\"", preferredStyle: .alert)
+            let alertDismissAction = UIAlertAction(title: "Dismiss", style: .default)
+            alert.addAction(alertDismissAction)
+            alert.preferredAction = alertDismissAction
+            
+            // present alert
+            present(alert, animated: true)
+        } else {
+            /* Present an alert letting the user know they selected an invalid interval */
+            // set up alert
+            let alert = UIAlertController(title:"Error Exporting User", message: "Please try again and contact the developer if issue persists", preferredStyle: .alert)
+            let alertDismissAction = UIAlertAction(title: "Dismiss", style: .default)
+            alert.addAction(alertDismissAction)
+            alert.preferredAction = alertDismissAction
+            
+            // present alert
+            present(alert, animated: true)
+        }
+    }
     
     // MARK: SearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -91,13 +117,17 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     
     // MARK: View life cycle
     override func viewDidLoad() {
-        // set accessability identifier; cache resultscontroller; set delegate to watch for changes to data
+        /* set accessability identifier; cache resultscontroller; set delegate to watch for changes to data;
+         * set up date formatter; turn of cell selection
+         */
         super.viewDidLoad()
         AvailabilityFetchedResultsController = DataService.shared.availability(for: belongingToUser)
         AvailabilityFetchedResultsController.delegate = self
         managedObjectContext = DataService.shared.getManagedObjectContext()
         dateForm.dateStyle = .medium
         dateForm.timeStyle = .short
+        AvailabilityTableList.allowsSelection = false
+        self.title = belongingToUser.name!
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -107,7 +137,7 @@ class AvailabilityListViewController: UIViewController, UITableViewDataSource, U
     
     
     // MARK: public properties
-    var belongingToUser: Users!
+    var belongingToUser: User!
     // MARK: private properties
     @IBOutlet private weak var AvailabilityTableList: UITableView!
     private var AvailabilityFetchedResultsController: NSFetchedResultsController<Availability>!

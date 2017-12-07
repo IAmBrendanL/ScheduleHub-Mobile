@@ -47,7 +47,7 @@
                                                     <rect key="frame" x="15" y="36" width="53" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -109,8 +109,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="fyM-79-dRS">
-                                                    <rect key="frame" x="0.0" y="-10" width="375" height="149"/>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="fyM-79-dRS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="534117477.73182201">
                                                         <!--2017-12-04 21:57:57 +0000-->
                                                     </date>
@@ -194,7 +194,7 @@
         <!--Users-->
         <scene sceneID="aZx-tg-S8H">
             <objects>
-                <viewController title="Users" id="6Cl-wQ-UN4" customClass="UsersListViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Users" id="6Cl-wQ-UN4" customClass="UserListViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kPw-Q5-RhC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,7 +207,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1ah-ZR-cIw">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="503"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" textLabel="j55-KC-leM" style="IBUITableViewCellStyleDefault" id="OWs-u3-hfs">
@@ -236,32 +236,43 @@
                                     <outlet property="delegate" destination="6Cl-wQ-UN4" id="0yK-z2-aAW"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvP-Qo-3yP">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Import" id="bFQ-hl-sOK">
+                                        <connections>
+                                            <action selector="importUser" destination="6Cl-wQ-UN4" id="V1n-zW-g6W"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Times" id="Sc4-nj-XAa">
+                                        <connections>
+                                            <segue destination="U2y-57-tCF" kind="show" identifier="toGroupAvailability" id="Fjv-zi-M3w"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="1ah-ZR-cIw" firstAttribute="bottom" secondItem="YvP-Qo-3yP" secondAttribute="top" id="2a2-d4-UO4"/>
                             <constraint firstItem="1ah-ZR-cIw" firstAttribute="top" secondItem="mDL-mv-oGW" secondAttribute="bottom" id="DQd-VQ-GzQ"/>
+                            <constraint firstItem="YvP-Qo-3yP" firstAttribute="leading" secondItem="lbd-YV-HNJ" secondAttribute="leading" id="F0t-w0-2hB"/>
                             <constraint firstItem="mDL-mv-oGW" firstAttribute="trailing" secondItem="lbd-YV-HNJ" secondAttribute="trailing" id="Ht9-dw-Yp3"/>
                             <constraint firstItem="mDL-mv-oGW" firstAttribute="leading" secondItem="lbd-YV-HNJ" secondAttribute="leading" id="Imc-w0-K6t"/>
-                            <constraint firstItem="lbd-YV-HNJ" firstAttribute="bottom" secondItem="1ah-ZR-cIw" secondAttribute="bottom" id="ONk-wd-1mn"/>
                             <constraint firstItem="mDL-mv-oGW" firstAttribute="top" secondItem="lbd-YV-HNJ" secondAttribute="top" id="OaE-lA-RB7"/>
+                            <constraint firstItem="YvP-Qo-3yP" firstAttribute="trailing" secondItem="lbd-YV-HNJ" secondAttribute="trailing" id="Otu-Wn-xwg"/>
                             <constraint firstItem="1ah-ZR-cIw" firstAttribute="leading" secondItem="lbd-YV-HNJ" secondAttribute="leading" id="bZg-hH-nRr"/>
+                            <constraint firstItem="lbd-YV-HNJ" firstAttribute="bottom" secondItem="YvP-Qo-3yP" secondAttribute="bottom" id="i64-5P-BdS"/>
                             <constraint firstItem="lbd-YV-HNJ" firstAttribute="trailing" secondItem="1ah-ZR-cIw" secondAttribute="trailing" id="vgX-F0-3cH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lbd-YV-HNJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Users" id="hC8-qG-5S6">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="ZpT-EJ-EdT">
-                                <connections>
-                                    <action selector="addUser" destination="6Cl-wQ-UN4" id="LnK-Ny-PYG"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Times" id="Sc4-nj-XAa">
-                                <connections>
-                                    <segue destination="U2y-57-tCF" kind="show" identifier="toGroupAvailability" id="Fjv-zi-M3w"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZpT-EJ-EdT">
+                            <connections>
+                                <action selector="addUser" destination="6Cl-wQ-UN4" id="LnK-Ny-PYG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="usersTableView" destination="1ah-ZR-cIw" id="geW-Te-Erp"/>
@@ -274,7 +285,7 @@
         <!--User Availability-->
         <scene sceneID="pzm-Mg-MGu">
             <objects>
-                <viewController title="User Availability" id="HHb-db-Wfd" customClass="AvailabilityListViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="User Availability" id="HHb-db-Wfd" customClass="UserAvailabilityListViewController" customModule="ScheduleHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hal-O5-gwi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,12 +346,19 @@
                         <viewLayoutGuide key="safeArea" id="Qov-Qq-jvL"/>
                     </view>
                     <navigationItem key="navigationItem" title="User Availability" id="cgg-1U-BHD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iXX-mM-tEs">
-                            <connections>
-                                <action selector="addUser" destination="HHb-db-Wfd" id="lFw-QY-c9N"/>
-                                <segue destination="7sW-Pm-hEU" kind="show" identifier="toAddAvailability" id="FeC-2E-txD"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="iXX-mM-tEs">
+                                <connections>
+                                    <action selector="addUser" destination="HHb-db-Wfd" id="lFw-QY-c9N"/>
+                                    <segue destination="7sW-Pm-hEU" kind="show" identifier="toAddAvailability" id="FeC-2E-txD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Export" id="vCb-cj-5LL">
+                                <connections>
+                                    <action selector="exportUser" destination="HHb-db-Wfd" id="JOn-uS-KFd"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="AvailabilityTableList" destination="Fxa-V2-1Sn" id="1Us-fV-i0Z"/>

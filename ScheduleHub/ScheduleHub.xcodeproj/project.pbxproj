@@ -14,7 +14,6 @@
 		C60C00461FB360FA001EE3BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60C00441FB360FA001EE3BB /* LaunchScreen.storyboard */; };
 		C60C00511FB360FA001EE3BB /* ScheduleHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */; };
 		C60C005C1FB360FB001EE3BB /* ScheduleHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */; };
-		C643BB821FD64F0700BDE227 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = C643BB811FD64F0700BDE227 /* todo.txt */; };
 		C643BB841FD6697900BDE227 /* GroupAvailabilityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */; };
 		C6552D881FB5824E00D1F6E8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */; };
 		C6604F381FB430DF007434C8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6604F371FB430DF007434C8 /* DataService.swift */; };
@@ -102,6 +101,7 @@
 				C643BB811FD64F0700BDE227 /* todo.txt */,
 				C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */,
 				C60C00371FB360FA001EE3BB /* ScheduleHub */,
+				C60C005A1FB360FB001EE3BB /* ScheduleHubUITests */,
 				C60C004F1FB360FA001EE3BB /* ScheduleHubTests */,
 				C60C00361FB360FA001EE3BB /* Products */,
 			);
@@ -131,7 +131,6 @@
 			children = (
 				C60C00501FB360FA001EE3BB /* ScheduleHubTests.swift */,
 				C60C00521FB360FB001EE3BB /* Info.plist */,
-				C60C005A1FB360FB001EE3BB /* ScheduleHubUITests */,
 			);
 			path = ScheduleHubTests;
 			sourceTree = "<group>";
@@ -317,7 +316,6 @@
 				C6552D881FB5824E00D1F6E8 /* Default-568h@2x.png in Resources */,
 				C60C00431FB360FA001EE3BB /* Assets.xcassets in Resources */,
 				C60C003E1FB360FA001EE3BB /* Main.storyboard in Resources */,
-				C643BB821FD64F0700BDE227 /* todo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,7 +584,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y6FW7TXMBT;
-				INFOPLIST_FILE = ScheduleHubUITests/Info.plist;
+				INFOPLIST_FILE = ScheduleHub/ScheduleHubUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHubUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -602,7 +600,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y6FW7TXMBT;
-				INFOPLIST_FILE = ScheduleHubUITests/Info.plist;
+				INFOPLIST_FILE = ScheduleHub/ScheduleHubUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BrendanLindsey.ScheduleHubUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -139,6 +139,9 @@ class DataService {
                 if smallerAvailabilityForGroupResultsController.fetchedObjects != nil {
                     for availability in smallerAvailabilityForGroupResultsController.fetchedObjects! {
                         availability.removeFromUserRelation(user)
+                        if availability.userRelation?.count ?? 0 == 0 {
+                            getManagedObjectContext().delete(availability)
+                        }
                     }
                 }
             }

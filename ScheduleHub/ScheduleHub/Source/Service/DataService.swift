@@ -173,6 +173,19 @@ class DataService {
         }
     }
     
+    func importJSON(from url: URL, in group: Group) -> Bool {
+        /* Creates a User and attaches it to the group */
+
+        do {
+                    let fManager = FileManager.default
+            let out = try JSONSerialization.jsonObject(with: fManager.contents(atPath: url.path)!, options: .mutableLeaves)
+            print(out)
+            return true
+        } catch {
+            return false
+        }
+    }
+    
     
     func getManagedObjectContext() -> NSManagedObjectContext {
         /* Returns a ManagedObjectContext */

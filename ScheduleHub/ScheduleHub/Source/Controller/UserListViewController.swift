@@ -19,6 +19,8 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: UIDocumentPickerDelegate
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         /* On completion, dismiss the view and save*/
+        
+        print(DataService.shared.importJSON(from: urls[0], in: belongingToGroup))
         dismiss(animated: true, completion: nil)
     }
     
@@ -85,7 +87,6 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         let docPicker = UIDocumentPickerViewController(documentTypes: ["public.json"], in: .import)
         docPicker.delegate = self
         present(docPicker, animated: true)
-        print("here")
     }
     
     
@@ -147,6 +148,7 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         usersFetchedResultsController = DataService.shared.users(for: belongingToGroup)
         usersFetchedResultsController.delegate = self
         managedObjectContext = DataService.shared.getManagedObjectContext()
+        self.title = belongingToGroup.name!
     }
     
     override func viewDidDisappear(_ animated: Bool) {

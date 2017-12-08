@@ -14,3 +14,16 @@ import CoreData
 public class Availability: NSManagedObject {
 
 }
+
+extension Availability {
+    convenience init?(json: [String: Any]) {
+        guard let start: Date = json["startTime"] as? Date,
+              let end: Date = json["endTime"] as? Date
+        else {
+            return nil
+        }
+        self.init()
+        self.startTime = start
+        self.endTime = end
+    }
+}

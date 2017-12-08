@@ -28,9 +28,30 @@ class ScheduleHubUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGroupCreationAndDeletion() {
+        /* Create and delete a group */
+        
+        let app = XCUIApplication()
+        let grouplisttableTable = XCUIApplication().tables["GroupListTable"]
+        app.navigationBars["Groups"].buttons["Add"].tap()
+
+        let collectionViewsQuery = app.alerts["Add New Group"].collectionViews
+        let groupNameTextField = collectionViewsQuery.textFields["Group Name"]
+        groupNameTextField.typeText("hdsfsd")
+        
+        let descriptionTextField = collectionViewsQuery.textFields["Description"]
+        descriptionTextField.tap()
+        descriptionTextField.typeText("hha")
+        descriptionTextField.tap()
+        app.alerts["Add New Group"].buttons["Save"].tap()
+        
+
+        grouplisttableTable.staticTexts["hdsfsd"].swipeLeft()
+        grouplisttableTable.buttons["Delete"].tap()
+        
+        
+
+        
     }
     
 }

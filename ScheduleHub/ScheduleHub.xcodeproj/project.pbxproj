@@ -57,7 +57,6 @@
 		C60C00571FB360FB001EE3BB /* ScheduleHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60C005B1FB360FB001EE3BB /* ScheduleHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHubUITests.swift; sourceTree = "<group>"; };
 		C60C005D1FB360FB001EE3BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C643BB811FD64F0700BDE227 /* todo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		C643BB831FD6697900BDE227 /* GroupAvailabilityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAvailabilityListViewController.swift; sourceTree = "<group>"; };
 		C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C6604F371FB430DF007434C8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -98,7 +97,6 @@
 		C60C002C1FB360FA001EE3BB = {
 			isa = PBXGroup;
 			children = (
-				C643BB811FD64F0700BDE227 /* todo.txt */,
 				C6552D871FB5824D00D1F6E8 /* Default-568h@2x.png */,
 				C60C00371FB360FA001EE3BB /* ScheduleHub */,
 				C60C005A1FB360FB001EE3BB /* ScheduleHubUITests */,

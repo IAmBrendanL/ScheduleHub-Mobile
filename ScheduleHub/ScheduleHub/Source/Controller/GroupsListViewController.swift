@@ -59,6 +59,16 @@ class GroupsListViewController: UIViewController, UITableViewDataSource, UITable
         present(alert, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        /* delete an availaible time based on a swipe action */
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") {(action,indexPath) in
+            self.managedObjectContext.delete(self.GroupsFetchedResultsController.object(at: indexPath))
+        }
+        return [delete]
+    }
+    
+    
+    
     
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

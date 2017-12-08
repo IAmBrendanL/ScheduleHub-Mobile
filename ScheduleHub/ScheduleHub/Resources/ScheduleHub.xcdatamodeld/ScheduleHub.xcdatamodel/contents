@@ -9,7 +9,7 @@
     <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="category">
         <attribute name="groupDescription" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="availabilityRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Availability" inverseName="groupRelation" inverseEntity="Availability" syncable="YES"/>
+        <relationship name="availabilityRelation" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Availability" inverseName="groupRelation" inverseEntity="Availability" syncable="YES"/>
         <relationship name="userRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="User" inverseName="groupRelation" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="category">

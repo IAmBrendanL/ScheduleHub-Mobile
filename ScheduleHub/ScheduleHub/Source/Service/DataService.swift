@@ -200,6 +200,7 @@ class DataService {
                         availability.startTime = dateForm.date(from: String(times[0]))
                         availability.endTime = dateForm.date(from: String(times[1]))
                         availability.addToUserRelation(importedUser)
+                        self.addToGroupAvailability(for: importedUser, availability)
                     }
                 }
             }

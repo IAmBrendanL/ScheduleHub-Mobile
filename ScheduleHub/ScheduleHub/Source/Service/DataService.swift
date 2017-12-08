@@ -174,29 +174,63 @@ class DataService {
     }
     
     func importJSON(from url: URL, in group: Group) -> Bool {
-        /* Creates a User and attaches it to the group */
-
+        /* Parses JSON data, creates a User and attaches it to the group */
         do {
-                    let fManager = FileManager.default
-            let out = try JSONSerialization.jsonObject(with: fManager.contents(atPath: url.path)!, options: .mutableLeaves)
-            print(out)
+            let fManager = FileManager.default
+            let out = try JSONSerialization.jsonObject(with: fManager.contents(atPath: url.path)!, options: .mutableContainers) as! [String:AnyObject]
+            guard let data = out["User"] as? [[String: String]] else {
+                return false
+            }
+            // guard against username and set up
+            guard let name = data[0]["Name"] else {
+                return false
+            }
+            let moc = self.getManagedObjectContext()
+            let importedUser = User(context: moc)
+            importedUser.name = name
+            importedUser.addToGroupRelation(group)
+            
+            // if there is more in the array, try to add availability
+            if data.count > 1 {
+                for dict in data {
+                    if let val = dict["Availability"] {
+                        let times = val.split(separator: "|")
+                        self.formatDate()
+                        let availability = Availability(context: moc)
+                        availability.startTime = dateForm.date(from: String(times[0]))
+                        availability.endTime = dateForm.date(from: String(times[1]))
+                        availability.addToUserRelation(importedUser)
+                    }
+                }
+            }
+            
+            self.saveManagedObjectContext(for: moc)
             return true
         } catch {
             return false
         }
     }
     
+
+    func getEventStore() -> EKEventStore {
+        /* Returns an event store */
+        return eventStore
+    }
+    
+    // MARK: ManagedObjectContext convience methods
     
     func getManagedObjectContext() -> NSManagedObjectContext {
         /* Returns a ManagedObjectContext */
         return container.viewContext
     }
     
-    func getEventStore() -> EKEventStore {
-        /* Returns an event store */
-        return eventStore
+    func saveManagedObjectContext(for moc: NSManagedObjectContext) {
+        do {
+            try moc.save()
+        } catch let error {
+            fatalError("Failed to save managedObjectContext due to: \(error)")
+        }
     }
-    
     
     // MARK: Private methods
     private func createResultsController<T>(for fetch: NSFetchRequest<T>) -> NSFetchedResultsController<T> {
@@ -228,6 +262,10 @@ class DataService {
         return createResultsController(for: fetch)
     }
     
+    private func formatDate() {
+        /* sets the dateFormater */
+        self.dateForm.dateFormat = "yyyy-MM-dd HH:mm:ssZZZ"
+    }
     
     
     // MARK: Public static properties
@@ -236,5 +274,7 @@ class DataService {
     // MARK: Private properties
     private let container: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     private let eventStore = EKEventStore()
+    private let dateForm = DateFormatter()
+
 }
 

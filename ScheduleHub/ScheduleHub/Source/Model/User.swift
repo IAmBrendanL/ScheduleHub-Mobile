@@ -15,12 +15,3 @@ public class User: NSManagedObject {
 
 }
 
-extension User {
-    convenience init?(json: [String: Any]) {
-        guard let userName : String = json["User"] as? String else {
-                return nil
-        }
-        self.init()
-        self.name = userName
-    }
-}

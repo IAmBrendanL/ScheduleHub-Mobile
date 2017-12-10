@@ -116,6 +116,18 @@ class UserAvailabilityListViewController: UIViewController, UITableViewDataSourc
     
     
     // MARK: View life cycle
+    override func viewWillAppear(_ animated: Bool) {
+        /* Add an observer for keyboard notifications */
+        super.viewWillAppear(animated)
+        
+        observerTokens.append(NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) in
+            self.AvailabilityTableList.adjustInsets(forWillShowKeyboardNotification: notification)
+        }))
+        observerTokens.append(NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) in
+            self.AvailabilityTableList.adjustInsets(forWillHideKeyboardNotification: notification)
+        }))
+    }
+    
     override func viewDidLoad() {
         /* set accessability identifier; cache resultscontroller; set delegate to watch for changes to data;
          * set up date formatter; turn of cell selection
@@ -131,7 +143,11 @@ class UserAvailabilityListViewController: UIViewController, UITableViewDataSourc
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        // make certain to save changes
+        /* Remove observers and save changes */
+        super.viewDidDisappear(animated)
+        for observerToken in observerTokens {
+            NotificationCenter.default.removeObserver(observerToken)
+        }
         saveManagedObjectContext()
     }
     
@@ -143,5 +159,5 @@ class UserAvailabilityListViewController: UIViewController, UITableViewDataSourc
     private var AvailabilityFetchedResultsController: NSFetchedResultsController<Availability>!
     private var managedObjectContext: NSManagedObjectContext!
     private let dateForm = DateFormatter()
-    
+    private var observerTokens = Array<Any>()
 }

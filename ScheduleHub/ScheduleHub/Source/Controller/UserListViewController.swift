@@ -153,6 +153,19 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     // MARK: View lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        /* Add an observer for keyboard notifications */
+        super.viewWillAppear(animated)
+        
+        observerTokens.append(NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) in
+            self.usersTableView.adjustInsets(forWillShowKeyboardNotification: notification)
+        }))
+        observerTokens.append(NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: OperationQueue.main, using: { [unowned self] (notification) in
+            self.usersTableView.adjustInsets(forWillHideKeyboardNotification: notification)
+        }))
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         usersFetchedResultsController = DataService.shared.users(for: belongingToGroup)
@@ -161,11 +174,15 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.title = belongingToGroup.name!
     }
     
+    
     override func viewDidDisappear(_ animated: Bool) {
-        // make certain to save changes
+        /* Remove observers and save changes */
+        super.viewDidDisappear(animated)
+        for observerToken in observerTokens {
+            NotificationCenter.default.removeObserver(observerToken)
+        }
         saveManagedObjectContext()
     }
-    
     
     
     // MARK: public properties
@@ -174,5 +191,5 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     private var usersFetchedResultsController: NSFetchedResultsController<User>!
     @IBOutlet private weak var usersTableView: UITableView!
     private var managedObjectContext: NSManagedObjectContext!
-    
+    private var observerTokens = Array<Any>()
 }
